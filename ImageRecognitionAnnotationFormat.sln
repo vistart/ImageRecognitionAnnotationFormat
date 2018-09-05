@@ -3,7 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2016
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageRecognitionAnnotationFormat", "ImageRecognitionAnnotationFormat\ImageRecognitionAnnotationFormat.csproj", "{3F42B0A1-9760-40E9-8CB9-07236B235E67}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Format", "Format\Format.csproj", "{F02F6260-E21B-4DEC-B5B7-6CBF7B572266}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleDemo", "ConsoleDemo\ConsoleDemo.csproj", "{33A819B0-E540-439F-B31F-8B2268053B63}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5000FCDE-ECC7-45E9-8D1D-56688E5E8C13}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +18,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3F42B0A1-9760-40E9-8CB9-07236B235E67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3F42B0A1-9760-40E9-8CB9-07236B235E67}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3F42B0A1-9760-40E9-8CB9-07236B235E67}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3F42B0A1-9760-40E9-8CB9-07236B235E67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F02F6260-E21B-4DEC-B5B7-6CBF7B572266}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F02F6260-E21B-4DEC-B5B7-6CBF7B572266}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F02F6260-E21B-4DEC-B5B7-6CBF7B572266}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F02F6260-E21B-4DEC-B5B7-6CBF7B572266}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33A819B0-E540-439F-B31F-8B2268053B63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33A819B0-E540-439F-B31F-8B2268053B63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33A819B0-E540-439F-B31F-8B2268053B63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33A819B0-E540-439F-B31F-8B2268053B63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
