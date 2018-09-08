@@ -7,9 +7,9 @@ namespace Vistart.ImageRecognitionAnnotationFormat.ConsoleDemo
     {
         static void Main(string[] args)
         {
-            Format.Format format = new Format.Format();
+            Format.Image format = new Format.Image();
             format.Filename = "image.jpg";
-            format.Base64ImgDate = "1";
+            format.Base64ImgData = "1";
             Console.WriteLine(JsonConvert.SerializeObject(format));
         }
     }

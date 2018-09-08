@@ -1,15 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using Newtonsoft.Json;
 
 namespace Vistart.ImageRecognitionAnnotationFormat.Format
 {
     [JsonObject(MemberSerialization.OptIn)]
-    public class Format
+    public class Layer
     {
         [JsonProperty]
-        public string Filename { get; set; }
+        public string Name;
 
         [JsonProperty]
-        public string Base64ImgDate { get; set; }
+        public Region[] Regions;
     }
 }
