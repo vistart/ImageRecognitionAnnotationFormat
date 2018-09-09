@@ -18,6 +18,6 @@ namespace Vistart.ImageRecognitionAnnotationFormat.Format
         public Shapes Shape;
 
         [JsonProperty]
-        public Point[] Points;
+        public List<Point> Points { get; set; } = new List<Point>();
     }
 }

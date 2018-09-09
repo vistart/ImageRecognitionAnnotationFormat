@@ -12,6 +12,6 @@ namespace Vistart.ImageRecognitionAnnotationFormat.Format
         public string Name;
 
         [JsonProperty]
-        public Region[] Regions;
+        public List<Region> Regions { get; set; } = new List<Region>();
     }
 }

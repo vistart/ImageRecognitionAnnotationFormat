@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace Vistart.ImageRecognitionAnnotationFormat.Format
@@ -13,6 +14,6 @@ namespace Vistart.ImageRecognitionAnnotationFormat.Format
         public string Base64ImgData { get; set; }
 
         [JsonProperty]
-        public Layer[] Layers { get; set; }
+        public List<Layer> Layers { get; set; } = new List<Layer>();
     }
 }

@@ -12,6 +12,6 @@ namespace Vistart.ImageRecognitionAnnotationFormat.Format
         public string Name;
 
         [JsonProperty]
-        public Object[] Objects;
+        public List<Object> Objects { get; set; } = new List<Object>();
     }
 }
