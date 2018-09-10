@@ -12,7 +12,7 @@ namespace Vistart.ImageRecognitionAnnotationFormat.ConsoleDemo
         {
             List<Point> points = new List<Point>()
             {
-                new Point() {X = 1, Y = 1}
+                new Point {X = 1, Y = 1}
             };
             Format.Image image = new Format.Image
             {
@@ -25,7 +25,7 @@ namespace Vistart.ImageRecognitionAnnotationFormat.ConsoleDemo
                         Name = "Layer1",
                         Regions =
                         {
-                            new Region()
+                            new Region
                             {
                                 Name = "Region1",
                                 Objects =
@@ -37,7 +37,10 @@ namespace Vistart.ImageRecognitionAnnotationFormat.ConsoleDemo
                     }
                 }
             };
-            Console.WriteLine(JsonConvert.SerializeObject(image));
+            string serialized = JsonConvert.SerializeObject(image);
+            Console.WriteLine(serialized);
+
+            Image deserialized = JsonConvert.DeserializeObject<Image>(serialized);
         }
     }
 }

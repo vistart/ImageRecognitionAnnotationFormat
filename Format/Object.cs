@@ -14,6 +14,9 @@ namespace Vistart.ImageRecognitionAnnotationFormat.Format
         [JsonProperty]
         public string Name;
 
+        /// <summary>
+        /// The category to which this object belongs.
+        /// </summary>
         [JsonProperty]
         public int Category;
 
@@ -32,7 +35,7 @@ namespace Vistart.ImageRecognitionAnnotationFormat.Format
             {
                 if (Shape == Shapes.Point)
                 {
-                    if (value.Count() == 1)
+                    if (value.Count == 1)
                     {
                         Points.AddRange(value);
                         return;
@@ -42,7 +45,7 @@ namespace Vistart.ImageRecognitionAnnotationFormat.Format
 
                 if (Shape == Shapes.LineSegment)
                 {
-                    if (value.Count() == 2)
+                    if (value.Count == 2)
                     {
                         Points.AddRange(value);
                         return;
@@ -52,7 +55,7 @@ namespace Vistart.ImageRecognitionAnnotationFormat.Format
 
                 if (Shape == Shapes.Path || Shape == Shapes.Polygon)
                 {
-                    if (value.Count() > 2)
+                    if (value.Count> 2)
                     {
                         Points.AddRange(value);
                         return;
@@ -62,7 +65,7 @@ namespace Vistart.ImageRecognitionAnnotationFormat.Format
 
                 if (Shape == Shapes.Ellipse)
                 {
-                    if (value.Count() == 3)
+                    if (value.Count == 3)
                     {
                         Points.AddRange(value);
                         return;
