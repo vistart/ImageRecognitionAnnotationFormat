@@ -12,13 +12,13 @@ namespace Vistart.ImageRecognitionAnnotationFormat.Format
     public class Object
     {
         [JsonProperty]
-        public string Name;
+        public string Name { get; set; }
 
         /// <summary>
         /// The category to which this object belongs.
         /// </summary>
         [JsonProperty]
-        public int Category;
+        public int Category { get; set; }
 
         public enum Shapes {Point, LineSegment, Path, Polygon, Ellipse};
 
@@ -27,6 +27,9 @@ namespace Vistart.ImageRecognitionAnnotationFormat.Format
 
         private readonly List<Point> _points = new List<Point>();
 
+        /// <summary>
+        /// Points.
+        /// </summary>
         [JsonProperty]
         public List<Point> Points
         {
@@ -35,45 +38,36 @@ namespace Vistart.ImageRecognitionAnnotationFormat.Format
             {
                 if (Shape == Shapes.Point)
                 {
-                    if (value.Count == 1)
-                    {
-                        Points.AddRange(value);
-                        return;
-                    }
-                    throw new ArgumentException(string.Format("When the shape is a point, the number of points should be 1. The current number is {0}.", value.Count()));
+                    if (value.Count != 1)
+                        throw new ArgumentException(string.Format("When the shape is a point, the number of points should be 1. The current number is {0}.", value.Count()));
+                    Points.AddRange(value);
                 }
 
                 if (Shape == Shapes.LineSegment)
                 {
-                    if (value.Count == 2)
-                    {
-                        Points.AddRange(value);
-                        return;
-                    }
-                    throw new ArgumentException(string.Format("When the shape is a line segment, the number of points should be 2. The current number is {0}.", value.Count()));
+                    if (value.Count != 2)
+                        throw new ArgumentException(string.Format("When the shape is a line segment, the number of points should be 2. The current number is {0}.", value.Count()));
+                    Points.AddRange(value);
                 }
 
                 if (Shape == Shapes.Path || Shape == Shapes.Polygon)
                 {
-                    if (value.Count> 2)
-                    {
-                        Points.AddRange(value);
-                        return;
-                    }
-                    throw new ArgumentException(string.Format("When the shape is a path or polygon, the number of points should be more than 2. The current number is {0}.", value.Count()));
+                    if (value.Count <= 2)
+                        throw new ArgumentException(string.Format("When the shape is a path or polygon, the number of points should be more than 2. The current number is {0}.", value.Count()));
+                    Points.AddRange(value);
                 }
 
                 if (Shape == Shapes.Ellipse)
                 {
-                    if (value.Count == 3)
-                    {
-                        Points.AddRange(value);
-                        return;
-                    }
-                    throw new ArgumentException(string.Format("When the shape is a ellipse, the number of points should be 3. the current number is {0}.", value.Count()));
+                    if (value.Count != 2)
+                        throw new ArgumentException(string.Format("When the shape is a ellipse, the number of points should be 2. the current number is {0}.", value.Count()));
+                    Points.AddRange(value);
                 }
             }
         }
+
+        [JsonProperty]
+        public float? EllipticalSemiMajorAxis { get; set; }= null;
 
         /// <summary>
         /// Determine if the current shape is a circle.
@@ -106,12 +100,14 @@ namespace Vistart.ImageRecognitionAnnotationFormat.Format
         /// <param name="category">The category to which this object belongs.</param>
         /// <param name="shape">Shape.</param>
         /// <param name="points">Points.</param>
-        public Object(string name, int category, Shapes shape, List<Point> points)
+        /// <param name="ellipticalSemiMajorAxis"></param>
+        public Object(string name, int category, Shapes shape, List<Point> points, float? ellipticalSemiMajorAxis = null)
         {
             Name = name;
             Category = category;
             Shape = shape;
             Points = points;
+            EllipticalSemiMajorAxis = ellipticalSemiMajorAxis;
         }
     }
 }

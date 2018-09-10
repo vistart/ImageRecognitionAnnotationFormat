@@ -9,7 +9,7 @@ namespace Vistart.ImageRecognitionAnnotationFormat.Format
     public class Region
     {
         [JsonProperty]
-        public string Name;
+        public string Name { get; set; }
 
         [JsonProperty]
         public List<Object> Objects { get; set; } = new List<Object>();
