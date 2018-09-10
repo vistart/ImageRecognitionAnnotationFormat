@@ -10,6 +10,10 @@ namespace Vistart.ImageRecognitionAnnotationFormat.ConsoleDemo
     {
         static void Main(string[] args)
         {
+            List<Point> points = new List<Point>()
+            {
+                new Point() {X = 1, Y = 1}
+            };
             Format.Image image = new Format.Image
             {
                 Filename = "image.jpg",
@@ -26,19 +30,7 @@ namespace Vistart.ImageRecognitionAnnotationFormat.ConsoleDemo
                                 Name = "Region1",
                                 Objects =
                                 {
-                                    new Format.Object()
-                                    {
-                                        Name = "Object1",
-                                        Points =
-                                        {
-                                            new Point()
-                                            {
-                                                X = 1,
-                                                Y = 1,
-                                            }
-                                        },
-                                        Shape = Object.Shapes.Point,
-                                    }
+                                    new Object("Object1", 1, Object.Shapes.Point, points)
                                 }
                             }
                         }

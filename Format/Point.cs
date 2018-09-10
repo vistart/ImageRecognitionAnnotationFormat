@@ -9,9 +9,9 @@ namespace Vistart.ImageRecognitionAnnotationFormat.Format
     public class Point
     {
         [JsonProperty]
-        public int X;
+        public float X;
 
         [JsonProperty]
-        public int Y;
+        public float Y;
     }
 }
