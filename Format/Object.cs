@@ -1,36 +1,40 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Runtime.CompilerServices;
-using System.Text;
-using Newtonsoft.Json;
+using System.Xml.Serialization;
 
 namespace Vistart.ImageRecognitionAnnotationFormat.Format
 {
     [JsonObject(MemberSerialization.OptIn)]
+    [XmlRoot("Object")]
     public class Object
     {
-        [JsonProperty]
-        public string Name { get; set; }
+        [JsonProperty("name")]
+        [XmlAttribute("name")]
+        public string Name { get; set; } = "";
 
         /// <summary>
         /// The category to which this object belongs.
         /// </summary>
-        [JsonProperty]
-        public int Category { get; set; }
+        [JsonProperty("category")]
+        [XmlAttribute("category")]
+        public int Category { get; set; } = 0;
 
         public enum Shapes {Point, LineSegment, Path, Polygon};
 
-        [JsonProperty]
-        public Shapes Shape { get; private set; }
+        [JsonProperty("shape")]
+        [XmlAttribute("shape")]
+        public Shapes Shape { get; set; } = Shapes.Point;
 
         private readonly List<Point> _points = new List<Point>();
 
         /// <summary>
         /// Points.
         /// </summary>
-        [JsonProperty]
+        [JsonProperty("points")]
+        [XmlArray("points")]
+        [XmlArrayItem("Point")]
         public List<Point> Points
         {
             get => _points;
@@ -57,6 +61,10 @@ namespace Vistart.ImageRecognitionAnnotationFormat.Format
                     Points.AddRange(value);
                 }
             }
+        }
+
+        public Object()
+        {
         }
 
         /// <summary>

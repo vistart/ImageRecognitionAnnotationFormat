@@ -1,17 +1,21 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using Newtonsoft.Json;
+using System.Xml.Serialization;
 
 namespace Vistart.ImageRecognitionAnnotationFormat.Format
 {
     [JsonObject(MemberSerialization.OptIn)]
+    [XmlRoot("Region")]
     public class Region
     {
-        [JsonProperty]
+        [JsonProperty("name")]
+        [XmlAttribute("name")]
         public string Name { get; set; }
 
-        [JsonProperty]
+        [JsonProperty("objects")]
+        [XmlArray("objects")]
+        [XmlArrayItem("Object")]
         public List<Object> Objects { get; set; } = new List<Object>();
     }
 }

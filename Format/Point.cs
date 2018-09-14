@@ -1,18 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System;
+using System.Xml.Serialization;
 
 namespace Vistart.ImageRecognitionAnnotationFormat.Format
 {
     [JsonObject(MemberSerialization.OptIn)]
+    [XmlRoot("Point")]
     public class Point
     {
-        [JsonProperty]
-        public int X { get; set; }
+        [JsonProperty("X")]
+        [XmlAttribute("X")]
+        public int X { get; set; } = 0;
 
-        [JsonProperty]
-        public int Y { get; set; }
+        [JsonProperty("Y")]
+        [XmlAttribute("Y")]
+        public int Y { get; set; } = 0;
 
         public static bool operator ==(Point left, Point right)
         {
@@ -41,6 +43,10 @@ namespace Vistart.ImageRecognitionAnnotationFormat.Format
             uint number = BitConverter.ToUInt32(BitConverter.GetBytes(value), 0);
             uint wrapped = number >> (32 - positions);
             return BitConverter.ToInt32(BitConverter.GetBytes((number << positions) | wrapped), 0);
+        }
+
+        public Point()
+        {
         }
 
         public Point(int x, int y)
