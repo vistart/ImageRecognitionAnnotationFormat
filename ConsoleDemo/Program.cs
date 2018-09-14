@@ -12,7 +12,7 @@ namespace Vistart.ImageRecognitionAnnotationFormat.ConsoleDemo
         {
             List<Point> points = new List<Point>()
             {
-                new Point {X = 1, Y = 1}
+                new Point(1, 1)
             };
             Format.Image image = new Format.Image
             {

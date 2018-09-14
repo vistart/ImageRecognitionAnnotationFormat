@@ -20,7 +20,7 @@ namespace Vistart.ImageRecognitionAnnotationFormat.Format
         [JsonProperty]
         public int Category { get; set; }
 
-        public enum Shapes {Point, LineSegment, Path, Polygon, Ellipse};
+        public enum Shapes {Point, LineSegment, Path, Polygon};
 
         [JsonProperty]
         public Shapes Shape { get; private set; }
@@ -56,41 +56,7 @@ namespace Vistart.ImageRecognitionAnnotationFormat.Format
                         throw new ArgumentException(string.Format("When the shape is a path or polygon, the number of points should be more than 2. The current number is {0}.", value.Count()));
                     Points.AddRange(value);
                 }
-
-                if (Shape == Shapes.Ellipse)
-                {
-                    if (value.Count != 2)
-                        throw new ArgumentException(string.Format("When the shape is a ellipse, the number of points should be 2. the current number is {0}.", value.Count()));
-                    Points.AddRange(value);
-                }
             }
-        }
-
-        [JsonProperty]
-        public float? EllipticalSemiMajorAxis { get; set; }= null;
-
-        /// <summary>
-        /// Determine if the current shape is a circle.
-        /// </summary>
-        /// <returns></returns>
-        public bool IsCircle()
-        {
-            if (Shape != Shapes.Ellipse)
-                return false;
-            return IsCoincide(Points[0], Points[1]);
-        }
-
-        public const double Epsilon = 1e-6;
-
-        /// <summary>
-        /// Determine if the two points coincide.
-        /// </summary>
-        /// <param name="one"></param>
-        /// <param name="two"></param>
-        /// <returns></returns>
-        public bool IsCoincide(Point one, Point two)
-        {
-            return (Math.Abs(one.X - two.X) < Epsilon && Math.Abs(one.Y - two.Y) < Epsilon);
         }
 
         /// <summary>
@@ -100,14 +66,12 @@ namespace Vistart.ImageRecognitionAnnotationFormat.Format
         /// <param name="category">The category to which this object belongs.</param>
         /// <param name="shape">Shape.</param>
         /// <param name="points">Points.</param>
-        /// <param name="ellipticalSemiMajorAxis"></param>
-        public Object(string name, int category, Shapes shape, List<Point> points, float? ellipticalSemiMajorAxis = null)
+        public Object(string name, int category, Shapes shape, List<Point> points)
         {
             Name = name;
             Category = category;
             Shape = shape;
             Points = points;
-            EllipticalSemiMajorAxis = ellipticalSemiMajorAxis;
         }
     }
 }
